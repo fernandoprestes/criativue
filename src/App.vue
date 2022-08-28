@@ -1,3 +1,8 @@
+<script setup lang="ts">
+  import LayoutFactory from './layouts/LayoutFactory.vue';
+</script>
 <template>
-  <router-view />
+  <LayoutFactory>
+    <RouterView />
+  </LayoutFactory>
 </template>

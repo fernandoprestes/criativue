@@ -1,12 +1,21 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
+import LayoutDashboardVue from '~/layouts/LayoutDashboard/Index.vue';
 
-import HomePage from '~/views/HomePage/index.vue';
+import HomeView from '~/views/HomeView.vue';
+
+const LayoutDashboard = { layout: LayoutDashboardVue };
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'HomePage',
-    component: HomePage,
+    name: 'HomeView',
+    component: HomeView,
+    meta: LayoutDashboard,
+  },
+
+  {
+    path: '/',
+    redirect: { name: 'HomeView' },
   },
 ];
 
