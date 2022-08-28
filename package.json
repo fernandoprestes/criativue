@@ -1,7 +1,12 @@
 {
-  "name": "vuets-start",
+  "name": "criativue",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
+  "version": "1.0.0",
+  "author": {
+    "name": "fernandoprestes",
+    "url": "https://github.com/fernandoprestes"
+  },
   "scripts": {
     "dev": "vite --open",
     "dev:host": "vite --host --open",
@@ -25,6 +30,7 @@
     ]
   },
   "dependencies": {
+    "@vueuse/core": "^9.1.1",
     "vue": "^3.2.37",
     "vue-router": "^4.1.3"
   },
