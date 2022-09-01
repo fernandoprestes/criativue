@@ -1,19 +1,17 @@
 <script setup lang="ts">
+  import { computed } from 'vue';
+
   interface Props {
     variant: 'primary' | 'secondary' | 'outline';
     label: string;
   }
-  defineProps<Props>();
+  const props = defineProps<Props>();
 
-  const context = {
-    primary: '--primary',
-    secondary: '--secondary',
-    outline: '--outline',
-  };
+  const variant = computed(() => `--${props.variant}`);
 </script>
 <template>
   <button
-    :class="['base-button ', context[variant]]"
+    :class="['base-button ', variant]"
     v-bind="$attrs"
   >
     {{ label }}
