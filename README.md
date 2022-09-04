@@ -4,26 +4,26 @@ Este repositório é um laboratorio de estudos e testes com o framework Vue e se
 
 ## Roadmap de componentes
 
-- [] Alert
-- [] Avatar
-- [] Breadcrumbs
+- [ ] Alert
+- [ ] Avatar
+- [ ] Breadcrumbs
 - [x] Button
-- [] Chips
-- [] Dialog
-- [] Divider
-- [] Loading
-- [] Notification
-- [] Pagination
-- [] Table
-- [] Tooltip
+- [ ] Chips
+- [ ] Dialog
+- [ ] Divider
+- [ ] Loading
+- [ ] Notification
+- [ ] Pagination
+- [ ] Table
+- [ ] Tooltip
 - Forms
-  - [] Autocomplete
-  - [] Checkbox
-  - [] Input
-  - [] Radio
-  - [] Select
-  - [] Switch
-  - [] Textarea
+  - [ ] Autocomplete
+  - [ ] Checkbox
+  - [x] Input
+  - [ ] Radio
+  - [ ] Select
+  - [ ] Switch
+  - [ ] Textarea
 
 ## Tecnologias
 

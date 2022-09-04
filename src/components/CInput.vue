@@ -31,15 +31,16 @@
   .input-group-wrapper {
     position: relative;
     flex: 1 1 auto;
-    padding: 12px 16px 8px;
+    padding: 12px 16px 4px;
     margin-bottom: 16px;
     font-size: 16px;
     background: #fff;
     border-radius: 8px 8px 0 0;
   }
 
-  .input-group-wrapper:has(~ .has-error) {
-    margin-bottom: 25px;
+  .input-group-wrapper :where([disabled='true']),
+  .input-group-wrapper :where([disabled='']) {
+    background: #edfff6;
   }
 
   .input-base {
@@ -58,11 +59,6 @@
     }
   }
 
-  .input-group-wrapper :where([disabled='true']),
-  .input-group-wrapper :where([disabled='']) {
-    background: #edfff6;
-  }
-
   .input-label {
     position: absolute;
     top: 18px;
@@ -78,17 +74,9 @@
     transition: 0.2s ease all;
   }
 
-  .input-base:focus ~ .input-label,
-  .input-base:not(:placeholder-shown) ~ .input-label {
-    top: 6px;
-    left: 15px;
-    font-size: 12px;
-    color: $color-primary;
-  }
-
   .input-border {
     position: absolute;
-    bottom: 4px;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 2px;
@@ -101,31 +89,16 @@
     display: none;
   }
 
-  .input-base:where([required]):where([data-content-valid='invalid']) ~ .input-border {
-    background: #e6522d;
+  .input-base:where([required]):where([data-content-valid='invalid']) ~ .input-label {
+    color: $color-error;
   }
 
-  .input-base:focus ~ .input-border,
-  .input-base:not(:placeholder-shown) ~ .input-border {
-    background: $color-primary;
-  }
-
-  .input-group-wrapper .input-base:where([required]):where([data-content-valid='invalid']) ~ .has-error {
-    position: absolute;
-    top: 48px;
-    left: 0;
-    display: block;
-    font-size: 14px;
-    color: #e6522d;
-  }
-
-  .input-group-wrapper .input-base:where([required]):where([data-content-valid='invalid']) ~ .has-error-icon {
-    position: absolute;
-    top: 20px;
-    right: 0;
-    display: block;
-    font-size: 14px;
-    color: #e6522d;
+  .input-base:focus ~ .input-label,
+  .input-base:not(:placeholder-shown) ~ .input-label {
+    top: 6px;
+    left: 15px;
+    font-size: 12px;
+    color: $color-primary;
   }
 
   .input-base:focus ~ .has-error,
@@ -138,8 +111,50 @@
     display: none;
   }
 
+  .input-group-wrapper .input-base:where([required]):where([data-content-valid='invalid']) ~ .has-error,
+  .input-group-wrapper .input-base:where([required]):where([data-content-valid='invalid']) ~ .has-error-icon {
+    position: absolute;
+    display: block;
+    color: $color-error;
+  }
+
+  .input-group-wrapper .input-base:where([required]):where([data-content-valid='invalid']) ~ .has-error {
+    top: 48px;
+    left: 16px;
+    font-size: 10px;
+  }
+
+  .input-group-wrapper .input-base:where([required]):where([data-content-valid='invalid']) ~ .has-error-icon {
+    top: 20px;
+    right: 4px;
+    font-size: 14px;
+  }
+
   .input-group-wrapper .input-base:not(:placeholder-shown) ~ .has-error,
   .input-group-wrapper .input-base:not(:placeholder-shown) ~ .has-error-icon {
     display: none;
+  }
+
+  .input-base:where([required]):where([data-content-valid='invalid']) ~ .input-border {
+    background: $color-error;
+  }
+
+  .input-base:focus ~ .input-border,
+  .input-base:not(:placeholder-shown) ~ .input-border {
+    background: $color-primary;
+  }
+
+  .input-base[type='email']:invalid:where([required]):where([data-content-valid='invalid']) {
+    ~ .input-border {
+      background: $color-error;
+    }
+
+    ~ .input-label {
+      color: $color-error;
+    }
+
+    ~ .has-error {
+      display: block;
+    }
   }
 </style>

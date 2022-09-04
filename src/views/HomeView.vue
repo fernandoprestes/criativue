@@ -1,10 +1,15 @@
 <script lang="ts" setup>
-  import { ref } from 'vue';
+  import { reactive } from 'vue';
   import CButton from '~/components/CButton.vue';
   import CInput from '../components/CInput.vue';
 
-  const name = ref('');
-  const age = ref();
+  interface IFormData {
+    name?: string;
+    age?: number | null;
+    email?: string;
+  }
+
+  const formData: IFormData = reactive({});
 </script>
 
 <template>
@@ -29,17 +34,24 @@
     <h2>Inputs</h2>
     <div class="button-group">
       <CInput
-        v-model="name"
-        label="Nome"
+        v-model="formData.name"
+        required
+        label="Nome *"
       />
       <CInput
-        v-model="age"
-        required
+        v-model="formData.age"
+        label="Idade"
         type="number"
-        label="Idade obrigatório"
+      />
+      <CInput
+        v-model="formData.email"
+        required
+        label="Email*"
+        type="email"
       />
     </div>
   </div>
+  <div>FormData: {{ formData }}</div>
 </template>
 <style lang="scss" scoped>
   .wrapper-div {
