@@ -16,18 +16,9 @@
   <div class="wrapper-div">
     <h2>Buttons</h2>
     <div class="button-group">
-      <CButton
-        label="Primary"
-        variant="primary"
-      />
-      <CButton
-        label="Secondary"
-        variant="secondary"
-      />
-      <CButton
-        label="Outline"
-        variant="outline"
-      />
+      <CButton>Primary</CButton>
+      <CButton variant="secondary">Secondary</CButton>
+      <CButton variant="outline">Outline</CButton>
     </div>
   </div>
   <div class="wrapper-div">
@@ -49,6 +40,10 @@
         label="Email*"
         type="email"
       />
+      <CInput
+        disabled
+        label="Input disabled"
+      />
     </div>
   </div>
   <div>FormData: {{ formData }}</div>
@@ -61,8 +56,8 @@
   }
 
   .button-group {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 8px 16px;
   }
 </style>

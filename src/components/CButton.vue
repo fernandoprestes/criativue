@@ -1,20 +1,30 @@
 <script setup lang="ts">
   import { computed } from 'vue';
 
-  interface Props {
-    variant: 'primary' | 'secondary' | 'outline';
-    label: string;
+  enum Variant {
+    PRIMARY = 'primary',
+    SECONDARY = 'secondary',
+    OUTLINE = 'outline',
   }
-  const props = defineProps<Props>();
 
-  const variant = computed(() => `--${props.variant}`);
+  type VariantType = `${Variant}`;
+
+  interface ButtonProps {
+    variant?: VariantType;
+  }
+
+  const props = withDefaults(defineProps<ButtonProps>(), {
+    variant: 'primary',
+  });
+
+  const variantClass = computed(() => `--${props.variant}`);
 </script>
 <template>
   <button
-    :class="['base-button ', variant]"
+    :class="['base-button ', variantClass]"
     v-bind="$attrs"
   >
-    {{ label }}
+    <slot />
   </button>
 </template>
 

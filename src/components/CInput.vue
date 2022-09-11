@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  interface Props {
+  interface InputProps {
     label: string;
     modelValue?: string | number | null;
   }
-  defineProps<Props>();
+  defineProps<InputProps>();
 
   const emit = defineEmits(['update:modelValue']);
   const onChangeInput = (event: Event) => {
@@ -34,13 +34,13 @@
     padding: 12px 16px 4px;
     margin-bottom: 16px;
     font-size: 16px;
-    background: #fff;
+    background: $color-white;
     border-radius: 8px 8px 0 0;
   }
 
-  .input-group-wrapper :where([disabled='true']),
-  .input-group-wrapper :where([disabled='']) {
-    background: #edfff6;
+  .input-group-wrapper:where([disabled='true']),
+  .input-group-wrapper:where([disabled='']) {
+    background: $color-gray-1;
   }
 
   .input-base {
@@ -65,13 +65,18 @@
     left: 16px;
     width: 80%;
     overflow: hidden;
-    color: #8f9994;
+    color: $color-gray-1;
     text-overflow: ellipsis;
     white-space: nowrap;
     pointer-events: none;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
     transition: 0.2s ease all;
+  }
+
+  .input-group-wrapper:where([disabled='true']) .input-label,
+  .input-group-wrapper:where([disabled='']) .input-label {
+    color: $color-gray-2;
   }
 
   .input-border {
@@ -82,6 +87,11 @@
     height: 2px;
     pointer-events: none;
     background: $color-border;
+  }
+
+  .input-group-wrapper:where([disabled='true']) .input-border,
+  .input-group-wrapper:where([disabled='']) .input-border {
+    background: $color-gray-1;
   }
 
   .has-error-icon,
