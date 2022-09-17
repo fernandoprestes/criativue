@@ -21,7 +21,7 @@
     "preserveValueImports": true,
     "importsNotUsedAsValues": "error",
     "paths": {
-      "~/*": ["src/*"]
+      "@/*": ["./src/*", "./dist/*"]
     },
     "useDefineForClassFields": true
   },
