@@ -14,10 +14,10 @@
   <div class="input-group-wrapper">
     <input
       :id="label"
-      class="input-base"
-      v-bind="$attrs"
-      :value="modelValue"
       :placeholder="label"
+      :value="modelValue"
+      v-bind="$attrs"
+      class="input-base"
       onblur="this.setAttribute('data-content-valid', 'invalid');"
       @input="onChangeInput"
     />
@@ -131,7 +131,7 @@
   .input-group-wrapper .input-base:where([required]):where([data-content-valid='invalid']) ~ .has-error {
     top: 48px;
     left: 16px;
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .input-group-wrapper .input-base:where([required]):where([data-content-valid='invalid']) ~ .has-error-icon {
@@ -163,7 +163,8 @@
       color: $color-error;
     }
 
-    ~ .has-error {
+    ~ .has-error,
+    ~ .has-error-icon {
       display: block;
     }
   }

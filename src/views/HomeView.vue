@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import { reactive } from 'vue';
-  import CButton from '~/components/CButton.vue';
-  import CInput from '../components/CInput.vue';
+  import CButton from '@/components/CButton.vue';
+  import CInput from '@/components/CInput.vue';
 
   interface IFormData {
     name?: string;
