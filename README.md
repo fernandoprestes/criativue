@@ -17,7 +17,7 @@ Este repositório é um laboratorio de estudos e testes com o framework Vue e se
 - [ ] Table
 - [ ] Tooltip
 - Forms
-  - [ ] Autocomplete
+  - [x] Autocomplete
   - [ ] Checkbox
   - [x] Input
   - [ ] Radio
@@ -38,6 +38,7 @@ Este repositório é um laboratorio de estudos e testes com o framework Vue e se
 - [Prettier](https://prettier.io/)
 - [Stylelint](https://stylelint.io/)
 - [husky](https://typicode.github.io/husky/#/)
+- [iconify-prerendered](https://github.com/cawa-93/iconify-prerendered)
 
 ### Ferramentas recomendadas
 
