@@ -35,7 +35,7 @@
     optionsListRef.value = autocompleteMatch(selectedItem);
 
     if (!optionsListRef.value.length) {
-      optionsListRef.value = [{ id: 0, name: 'nada nada' }];
+      optionsListRef.value = [{ id: 0, name: 'Nenhum item foi encontrado' }];
     }
   };
 
