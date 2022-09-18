@@ -1,7 +1,10 @@
 <script lang="ts" setup>
-  import { reactive } from 'vue';
+  import { reactive, ref } from 'vue';
   import CButton from '@/components/CButton.vue';
   import CInput from '@/components/CInput.vue';
+  import CAutocomplete from '../components/CAutocomplete.vue';
+
+  import { COUNTRY_LIST } from '@/@fake-data/CountriesList';
 
   interface IFormData {
     name?: string;
@@ -10,6 +13,8 @@
   }
 
   const formData: IFormData = reactive({});
+
+  const something = ref(0);
 </script>
 
 <template>
@@ -47,6 +52,14 @@
     </div>
   </div>
   <div>FormData: {{ formData }}</div>
+  <div>{{ something }}</div>
+  <div>
+    <CAutocomplete
+      v-model="something"
+      label="Paises"
+      :options-list="COUNTRY_LIST"
+    />
+  </div>
 </template>
 <style lang="scss" scoped>
   .wrapper-div {
