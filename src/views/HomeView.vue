@@ -4,7 +4,7 @@
   import CInput from '@/components/CInput.vue';
   import CAutocomplete from '../components/CAutocomplete.vue';
 
-  import { COUNTRY_LIST } from '@/@fake-data/CountriesList';
+  import { COUNTRY_LIST } from '@fake-data/CountriesList';
 
   interface IFormData {
     name?: string;
