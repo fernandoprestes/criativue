@@ -21,7 +21,9 @@
     "preserveValueImports": true,
     "importsNotUsedAsValues": "error",
     "paths": {
-      "@/*": ["./src/*", "./dist/*"]
+      "@/*": ["./src/*", "./dist/*"],
+      "@model/*": ["./src/@model/*"],
+      "@fake-data/*": ["./src/@fake-data/*"]
     },
     "useDefineForClassFields": true
   },
