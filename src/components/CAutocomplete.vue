@@ -2,7 +2,7 @@
   import { ref } from 'vue';
   import { onClickOutside, useVirtualList } from '@vueuse/core';
   import { IconKeyboardArrowDown } from '@iconify-prerendered/vue-mdi';
-  import type { IOptionsListSelect } from '@model/IOptionsListSelect';
+  import type { IOptionsListSelect } from '@interfaces/IOptionsListSelect';
   import CInput from './CInput.vue';
 
   const props = defineProps<{

@@ -22,7 +22,7 @@
     "importsNotUsedAsValues": "error",
     "paths": {
       "@/*": ["./src/*", "./dist/*"],
-      "@model/*": ["./src/@model/*"],
+      "@interfaces/*": ["src/@interfaces/*"],
       "@fake-data/*": ["./src/@fake-data/*"]
     },
     "useDefineForClassFields": true

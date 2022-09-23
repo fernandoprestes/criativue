@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { IconInfoCircleOutline } from '@iconify-prerendered/vue-mdi';
   interface InputProps {
     label: string;
     modelValue?: string | number | null;
@@ -22,7 +23,9 @@
       @input="onChangeInput"
     />
     <label class="input-label">{{ label }}</label>
-    <span class="has-error-icon">E</span>
+    <span class="has-error-icon">
+      <IconInfoCircleOutline />
+    </span>
     <span class="input-border"></span>
     <span class="has-error">Este campo é obrigatório</span>
   </div>

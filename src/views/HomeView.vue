@@ -2,7 +2,7 @@
   import { reactive, ref } from 'vue';
   import CButton from '@/components/CButton.vue';
   import CInput from '@/components/CInput.vue';
-  import CAutocomplete from '../components/CAutocomplete.vue';
+  import CAutocomplete from '@/components/CAutocomplete.vue';
 
   import { COUNTRY_LIST } from '@fake-data/CountriesList';
 
