@@ -1,26 +1,31 @@
 <script setup lang="ts">
   import { IconInfoCircleOutline } from '@iconify-prerendered/vue-mdi';
+  import { computed } from 'vue';
   interface InputProps {
     label: string;
     modelValue?: string | number | null;
   }
-  defineProps<InputProps>();
+  const props = defineProps<InputProps>();
 
   const emit = defineEmits(['update:modelValue']);
-  const onChangeInput = (event: Event) => {
-    emit('update:modelValue', (event.target as HTMLInputElement).value);
-  };
+  const model = computed({
+    get() {
+      return props.modelValue;
+    },
+    set(value) {
+      emit('update:modelValue', value);
+    },
+  });
 </script>
 <template>
   <div class="input-group-wrapper">
     <input
       :id="label"
+      v-model="model"
       :placeholder="label"
-      :value="modelValue"
       v-bind="$attrs"
       class="input-base"
       onblur="this.setAttribute('data-content-valid', 'invalid');"
-      @input="onChangeInput"
     />
     <label class="input-label">{{ label }}</label>
     <span class="has-error-icon">

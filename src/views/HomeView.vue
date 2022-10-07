@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { reactive, ref, watch } from 'vue';
+  import { reactive } from 'vue';
   import CButton from '@/components/CButton.vue';
   import CInput from '@/components/CInput.vue';
   import CAutocomplete from '@/components/CAutocomplete.vue';
@@ -11,80 +11,92 @@
     name?: string;
     age?: number | null;
     email?: string;
+    somethingHobbies: [];
+    somethingBoolean?: false;
+    countrySelected?: 0;
   }
 
-  const formData: IFormData = reactive({});
-
-  const something = ref([2, 3, 7, 5]);
-  const somethingBoolean = ref(false);
-  const countrySelected = ref(0);
-
-  watch(something, () => {
-    console.log(something.value);
+  const formData: IFormData = reactive({
+    somethingHobbies: [],
   });
 </script>
 
 <template>
-  <div class="wrapper-div">
-    <h2>Buttons</h2>
-    <div class="button-group">
-      <CButton>Primary</CButton>
-      <CButton variant="secondary">Secondary</CButton>
-      <CButton variant="outline">Outline</CButton>
+  <div class="wrapper-main">
+    <div class="wrapper-div">
+      <h2>Buttons</h2>
+      <div class="button-group">
+        <CButton>Primary</CButton>
+        <CButton variant="secondary">Secondary</CButton>
+        <CButton variant="outline">Outline</CButton>
+      </div>
     </div>
-  </div>
-  <div class="wrapper-div">
-    <h2>Inputs</h2>
-    <div class="button-group">
-      <CInput
-        v-model="formData.name"
-        :value="formData.name"
-        required
-        label="Nome *"
-        class="teste"
-      />
-      <CInput
-        v-model="formData.age"
-        label="Idade"
-        type="number"
-      />
-      <CInput
-        v-model="formData.email"
-        required
-        label="Email*"
-        type="email"
-      />
-      <CInput
-        disabled
-        label="Input disabled"
+    <div class="wrapper-div">
+      <h2>Inputs</h2>
+      <div class="button-group">
+        <CInput
+          v-model="formData.name"
+          :value="formData.name"
+          required
+          label="Nome *"
+          class="teste"
+        />
+        <CInput
+          v-model="formData.age"
+          label="Idade"
+          type="number"
+        />
+        <CInput
+          v-model="formData.email"
+          required
+          label="Email*"
+          type="email"
+        />
+        <CInput
+          disabled
+          label="Input disabled"
+        />
+      </div>
+    </div>
+    <div>
+      <CAutocomplete
+        v-model="formData.countrySelected"
+        label="Países"
+        :options-list="COUNTRY_LIST"
       />
     </div>
-  </div>
-  <div>FormData: {{ formData }}</div>
-  <div>{{ something }}</div>
-  <div>
-    <CAutocomplete
-      v-model="countrySelected"
-      label="Países"
-      :options-list="COUNTRY_LIST"
-    />
-  </div>
-  <div>
-    <CCheckbox
-      v-model="somethingBoolean"
-      :value="false"
-    />
-    <CCheckbox
-      v-model="something"
-      :value="2"
-    />
-    <CCheckbox
-      v-model="something"
-      :value="3"
-    />
+    <div class="button-group">
+      <CCheckbox
+        v-model="formData.somethingBoolean"
+        :value="false"
+        label="Aceito"
+      />
+      <CCheckbox
+        v-model="formData.somethingHobbies"
+        value="Dançar"
+        label="Dançar"
+      />
+
+      <CCheckbox
+        v-model="formData.somethingHobbies"
+        value="Cantar"
+        label="Cantar"
+      />
+    </div>
+    <div>
+      <code> FormData output: {{ formData }} </code>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
+  .wrapper-main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+  }
+
   .wrapper-div {
     display: flex;
     flex-direction: column;
@@ -93,7 +105,7 @@
 
   .button-group {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 8px 16px;
   }
 </style>

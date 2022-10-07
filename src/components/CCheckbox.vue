@@ -4,6 +4,7 @@
   const props = defineProps({
     modelValue: { type: [Array<number | string>, Boolean], default: false },
     value: { type: [Boolean, Object, String, Number], default: false },
+    label: { type: String, default: '' },
   });
 
   const emit = defineEmits(['update:modelValue']);
@@ -18,25 +19,38 @@
 </script>
 
 <template>
-  <label class="form-control">
+  <div class="checkbox-control">
     <input
       v-bind="$attrs"
       v-model="model"
       :value="value"
       name="checkbox"
       type="checkbox"
-      class="checkbox"
+      class="checkbox-input"
     />
-  </label>
+    <label
+      class="checkbox-label"
+      for="checkbox"
+    >
+      {{ label }}
+    </label>
+  </div>
 </template>
 
 <style scoped lang="scss">
-  .form-control {
+  .checkbox-control {
+    display: flex;
+    gap: 8px;
     font-size: 30px;
-    font-weight: bold;
+    font-weight: 700;
   }
 
-  .checkbox {
+  .checkbox-label {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .checkbox-input {
     display: grid;
     place-content: center;
     width: 27px;
@@ -47,7 +61,7 @@
     appearance: none;
   }
 
-  .checkbox::before {
+  .checkbox-input::before {
     width: 0.65em;
     height: 0.65em;
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
@@ -57,15 +71,15 @@
     transform: scale(0);
   }
 
-  .checkbox:checked::before {
+  .checkbox-input:checked::before {
     transform: scale(1);
   }
 
-  .checkbox:focus {
+  .checkbox-input:focus {
     outline-offset: max(2px, 0.15em);
   }
 
-  .checkbox:disabled {
+  .checkbox-input:disabled {
     color: $color-accent;
     cursor: not-allowed;
   }

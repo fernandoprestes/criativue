@@ -139,12 +139,14 @@
     position: absolute;
     top: 45px;
     left: 0;
-    z-index: 10;
+    z-index: 50;
     width: 100%;
     min-height: 100px;
     max-height: 210px;
+    margin-top: 2px;
     overflow: auto;
-    border-radius: 8px;
+    background: $color-white;
+    border-radius: 0 0 8px 8px;
     box-shadow: 2px 2px 5px rgb(10 10 10 / 10%);
     scrollbar-width: thin;
     scrollbar-color: $color-primary transparent;
