@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-  import { reactive, ref } from 'vue';
+  import { reactive, ref, watch } from 'vue';
   import CButton from '@/components/CButton.vue';
   import CInput from '@/components/CInput.vue';
   import CAutocomplete from '@/components/CAutocomplete.vue';
 
   import { COUNTRY_LIST } from '@fake-data/CountriesList';
+  import CCheckbox from '../components/CCheckbox.vue';
 
   interface IFormData {
     name?: string;
@@ -14,7 +15,13 @@
 
   const formData: IFormData = reactive({});
 
-  const something = ref(0);
+  const something = ref([2, 3, 7, 5]);
+  const somethingBoolean = ref(false);
+  const countrySelected = ref(0);
+
+  watch(something, () => {
+    console.log(something.value);
+  });
 </script>
 
 <template>
@@ -31,8 +38,10 @@
     <div class="button-group">
       <CInput
         v-model="formData.name"
+        :value="formData.name"
         required
         label="Nome *"
+        class="teste"
       />
       <CInput
         v-model="formData.age"
@@ -55,9 +64,23 @@
   <div>{{ something }}</div>
   <div>
     <CAutocomplete
-      v-model="something"
-      label="Paises"
+      v-model="countrySelected"
+      label="Países"
       :options-list="COUNTRY_LIST"
+    />
+  </div>
+  <div>
+    <CCheckbox
+      v-model="somethingBoolean"
+      :value="false"
+    />
+    <CCheckbox
+      v-model="something"
+      :value="2"
+    />
+    <CCheckbox
+      v-model="something"
+      :value="3"
     />
   </div>
 </template>

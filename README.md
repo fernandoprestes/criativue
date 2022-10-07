@@ -18,7 +18,7 @@ Este repositório é um laboratorio de estudos e testes com o framework Vue e se
 - [ ] Tooltip
 - Forms
   - [x] Autocomplete
-  - [ ] Checkbox
+  - [x] Checkbox
   - [x] Input
   - [ ] Radio
   - [ ] Select
