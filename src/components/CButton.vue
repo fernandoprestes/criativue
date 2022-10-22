@@ -34,7 +34,7 @@
     align-items: center;
     justify-content: center;
     padding: 12px 16px;
-    color: $color-accent;
+    color: color(accent);
     text-align: center;
     cursor: pointer;
     background: transparent;
@@ -47,21 +47,21 @@
     }
 
     &.--primary {
-      background: $color-primary;
+      background: color(primary);
     }
 
     &.--secondary {
-      background: $color-secondary;
+      background: color(secondary);
     }
 
     &.--outline {
-      color: $color-primary;
-      border: 1px solid $color-primary;
+      color: color(primary);
+      border: 1px solid color(primary);
     }
 
     &.--outline:hover {
-      color: $color-accent;
-      background: $color-primary;
+      color: color(accent);
+      background: color(primary);
     }
   }
 </style>

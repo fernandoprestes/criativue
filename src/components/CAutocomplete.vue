@@ -145,11 +145,11 @@
     max-height: 210px;
     margin-top: 2px;
     overflow: auto;
-    background: $color-white;
+    background: color('white');
     border-radius: 0 0 8px 8px;
     box-shadow: 2px 2px 5px rgb(10 10 10 / 10%);
     scrollbar-width: thin;
-    scrollbar-color: $color-primary transparent;
+    scrollbar-color: color(primary) transparent;
 
     &::-webkit-scrollbar {
       width: 8px;
@@ -157,7 +157,7 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background: $color-primary;
+      background: color(primary);
       -webkit-border-radius: 8px;
     }
   }
@@ -171,9 +171,9 @@
     font-weight: 400;
 
     &:hover {
-      color: $color-white;
+      color: color('white');
       cursor: pointer;
-      background: $color-primary;
+      background: color(primary);
     }
   }
 

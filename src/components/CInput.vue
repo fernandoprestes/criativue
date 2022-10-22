@@ -42,13 +42,13 @@
     padding: 12px 16px 4px;
     margin-bottom: 16px;
     font-size: 16px;
-    background: $color-white;
+    background: color('white');
     border-radius: 8px 8px 0 0;
   }
 
   .input-group-wrapper:where([disabled='true']),
   .input-group-wrapper:where([disabled='']) {
-    background: $color-gray-1;
+    background: color(gray-1);
   }
 
   .input-base {
@@ -73,7 +73,7 @@
     left: 16px;
     width: 80%;
     overflow: hidden;
-    color: $color-gray-1;
+    color: color(gray-1);
     text-overflow: ellipsis;
     white-space: nowrap;
     pointer-events: none;
@@ -84,7 +84,7 @@
 
   .input-group-wrapper:where([disabled='true']) .input-label,
   .input-group-wrapper:where([disabled='']) .input-label {
-    color: $color-gray-2;
+    color: color(gray-2);
   }
 
   .input-border {
@@ -94,12 +94,12 @@
     width: 100%;
     height: 2px;
     pointer-events: none;
-    background: $color-border;
+    background: color(border);
   }
 
   .input-group-wrapper:where([disabled='true']) .input-border,
   .input-group-wrapper:where([disabled='']) .input-border {
-    background: $color-gray-1;
+    background: color(gray-1);
   }
 
   .has-error-icon,
@@ -108,7 +108,7 @@
   }
 
   .input-base:where([required]):where([data-content-valid='invalid']) ~ .input-label {
-    color: $color-error;
+    color: color(error);
   }
 
   .input-base:focus ~ .input-label,
@@ -116,7 +116,7 @@
     top: 6px;
     left: 15px;
     font-size: 12px;
-    color: $color-primary;
+    color: color(primary);
   }
 
   .input-base:focus ~ .has-error,
@@ -133,7 +133,7 @@
   .input-group-wrapper .input-base:where([required]):where([data-content-valid='invalid']) ~ .has-error-icon {
     position: absolute;
     display: block;
-    color: $color-error;
+    color: color(error);
   }
 
   .input-group-wrapper .input-base:where([required]):where([data-content-valid='invalid']) ~ .has-error {
@@ -154,21 +154,21 @@
   }
 
   .input-base:where([required]):where([data-content-valid='invalid']) ~ .input-border {
-    background: $color-error;
+    background: color(error);
   }
 
   .input-base:focus ~ .input-border,
   .input-base:not(:placeholder-shown) ~ .input-border {
-    background: $color-primary;
+    background: color(primary);
   }
 
   .input-base[type='email']:invalid:where([required]):where([data-content-valid='invalid']) {
     ~ .input-border {
-      background: $color-error;
+      background: color(error);
     }
 
     ~ .input-label {
-      color: $color-error;
+      color: color(error);
     }
 
     ~ .has-error,

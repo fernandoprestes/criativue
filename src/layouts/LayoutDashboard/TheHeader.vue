@@ -15,6 +15,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 18px 32px;
-    border-bottom: 1px solid $color-border;
+    border-bottom: 1px solid color(border);
   }
 </style>

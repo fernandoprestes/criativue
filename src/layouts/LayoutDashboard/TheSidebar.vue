@@ -17,7 +17,7 @@
     max-width: 268px;
     height: calc(100vh - 86px);
     padding: 50px 22px 0;
-    border-right: 1px solid $color-border;
+    border-right: 1px solid color(border);
   }
 
   .sidebar-item {
@@ -26,18 +26,18 @@
     align-items: center;
     width: 100%;
     padding: 12px 16px;
-    color: $color-primary;
+    color: color(primary);
     text-decoration: none;
     border-radius: $radius-medium;
     transition: all $transition-duration $easing;
 
     &.router-link-active {
-      color: $color-accent;
-      background: $color-primary;
+      color: color(accent);
+      background: color(primary);
     }
 
     &:hover {
-      background: $color-secondary;
+      background: color(secondary);
     }
   }
 </style>

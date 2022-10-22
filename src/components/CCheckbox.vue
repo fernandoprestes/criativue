@@ -55,7 +55,7 @@
     place-content: center;
     width: 27px;
     height: 27px;
-    border: 1px solid $color-border;
+    border: 1px solid color(border);
     border-radius: 8px;
     transform: translateY(-0.075em);
     appearance: none;
@@ -66,7 +66,7 @@
     height: 0.65em;
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
     content: '';
-    background-color: $color-primary;
+    background-color: color(primary);
     transition: all 120ms ease-in-out;
     transform: scale(0);
   }
@@ -80,7 +80,7 @@
   }
 
   .checkbox-input:disabled {
-    color: $color-accent;
+    color: color(accent);
     cursor: not-allowed;
   }
 </style>
