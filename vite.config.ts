@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import { fileURLToPath, URL } from 'url';
 import vue from '@vitejs/plugin-vue';
 
@@ -14,6 +14,7 @@ export default defineConfig({
       '@fake-data': fileURLToPath(new URL('./src/@fake-data', import.meta.url)),
     },
   },
+  plugins: [vue()],
 
   css: {
     preprocessorOptions: {
@@ -24,5 +25,12 @@ export default defineConfig({
       },
     },
   },
-  plugins: [vue()],
+
+  test: {
+    include: ['test/**/*.test.ts', 'src/**/*.test.ts'],
+    environment: 'jsdom',
+    deps: {
+      inline: ['@vue', '@vueuse'],
+    },
+  },
 });
