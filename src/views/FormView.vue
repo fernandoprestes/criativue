@@ -75,7 +75,7 @@
         v-model="state.formData.name"
         label="Nome"
         name="name"
-        tooltip-message="O nome deve ser complete, nome e sobrenome com minimo 2 caracteres"
+        tooltip-message="O nome deve ser complete, NOME e SOBRENOME com minimo 2 caracteres"
         type="text"
       />
 

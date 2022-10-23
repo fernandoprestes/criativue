@@ -28,36 +28,38 @@
   });
 </script>
 <template>
-  <div class="input-group">
-    <input
-      :id="name"
-      :name="name"
-      :value="inputValue"
-      :placeholder="label"
-      v-bind="$attrs"
-      class="input-field"
-      @input="handleChange"
-      @blur="handleBlur"
-    />
-    <label class="input-label">{{ label }}</label>
-    <span
-      v-if="errorMessage && !meta.valid && props.tooltipMessage"
-      class="has-error-icon"
-    >
-      <CTooltip :text="props.tooltipMessage">
-        <IconInfoCircleOutline />
-      </CTooltip>
-    </span>
-    <span
-      v-if="errorMessage || meta.valid"
-      class="has-error-label"
-    >
-      {{ meta.valid ? successMessage : errorMessage }}
-    </span>
-    <span
-      class="input-border"
-      :class="{ error: errorMessage }"
-    ></span>
+  <div>
+    <div class="input-group">
+      <input
+        :id="name"
+        :name="name"
+        :value="inputValue"
+        :placeholder="label"
+        v-bind="$attrs"
+        class="input-field"
+        @input="handleChange"
+        @blur="handleBlur"
+      />
+      <label class="input-label">{{ label }}</label>
+      <span
+        v-if="errorMessage && !meta.valid && props.tooltipMessage"
+        class="has-error-icon"
+      >
+        <CTooltip :text="props.tooltipMessage">
+          <IconInfoCircleOutline />
+        </CTooltip>
+      </span>
+
+      <span
+        class="input-border"
+        :class="{ error: errorMessage }"
+      ></span>
+    </div>
+    <div class="has-error-label">
+      <span v-if="errorMessage || meta.valid">
+        {{ meta.valid ? successMessage : errorMessage }}
+      </span>
+    </div>
   </div>
 </template>
 <style scoped lang="scss">
@@ -65,7 +67,6 @@
     position: relative;
     flex: 1 1 auto;
     padding: 4px 16px;
-    margin-bottom: 16px;
     font-size: 16px;
     background: color('white');
     border-radius: 8px 8px 0 0;
@@ -140,24 +141,25 @@
     color: color(primary);
   }
 
-  .input-group .input-field ~ .has-error-label,
   .input-group .input-field ~ .has-error-icon {
     position: absolute;
+    top: 12px;
+    right: 16px;
     display: block;
+    font-size: 14px;
     color: color(error);
     word-wrap: break-word;
   }
 
-  .input-group .input-field ~ .has-error-label {
+  .has-error-label {
     top: 34px;
     left: 16px;
+    display: block;
+    min-height: 18px;
+    padding-left: 16px;
     font-size: 12px;
-  }
-
-  .input-group .input-field ~ .has-error-icon {
-    top: 12px;
-    right: 4px;
-    font-size: 14px;
+    color: color(error);
+    word-wrap: break-word;
   }
 
   .input-field:focus ~ .input-border,

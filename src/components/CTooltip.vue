@@ -10,29 +10,32 @@
 </script>
 
 <template>
-  <div
-    class="tooltip-group"
-    @mouseover="tip = true"
-    @mouseleave="tip = false"
-  >
+  <div class="tooltip-group">
     <div
       v-if="tip"
       class="tooltip-item"
     >
       {{ text }}
     </div>
-    <slot />
+    <div
+      style="width: 16px; height: 16px"
+      @mouseover="tip = true"
+      @mouseleave="tip = false"
+    >
+      <slot />
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
   .tooltip-group {
-    position: relative;
-    width: clamp(246px, 100%, 0px);
+    position: absolute;
+    z-index: 9999;
+    width: clamp(246px, 0%, 0px);
   }
 
   .tooltip-item {
     position: absolute;
-    bottom: 25px;
+    bottom: 20px;
     z-index: 9999;
     padding: 4px 6px;
     font-size: 12px;
