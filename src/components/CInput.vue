@@ -1,46 +1,68 @@
 <script setup lang="ts">
+  import { toRef } from 'vue';
+  import { useField } from 'vee-validate';
   import { IconInfoCircleOutline } from '@iconify-prerendered/vue-mdi';
-  import { computed } from 'vue';
+
   interface InputProps {
+    name: string;
     label: string;
     modelValue?: string | number | null;
+    successMessage?: string;
+    failedMessage?: string;
+    tooltipMessage?: string;
   }
   const props = defineProps<InputProps>();
 
-  const emit = defineEmits(['update:modelValue']);
-  const model = computed({
-    get() {
-      return props.modelValue;
-    },
-    set(value) {
-      emit('update:modelValue', value);
-    },
+  const inputNameRef = toRef(props, 'name');
+  const inputValueRef = toRef(props, 'modelValue');
+
+  const {
+    value: inputValue,
+    errorMessage,
+    handleBlur,
+    handleChange,
+    meta,
+  } = useField(inputNameRef, undefined, {
+    initialValue: inputValueRef,
   });
 </script>
 <template>
   <div class="input-group-wrapper">
     <input
-      :id="label"
-      v-model="model"
+      :id="name"
+      :name="name"
+      :value="inputValue"
       :placeholder="label"
       v-bind="$attrs"
       class="input-base"
-      onblur="this.setAttribute('data-content-valid', 'invalid');"
+      @input="handleChange"
+      @blur="handleBlur"
     />
     <label class="input-label">{{ label }}</label>
-    <span class="has-error-icon">
+    <span
+      v-if="errorMessage && !meta.valid"
+      class="has-error-icon"
+    >
       <IconInfoCircleOutline />
     </span>
-    <span class="input-border"></span>
-    <span class="has-error">Este campo é obrigatório</span>
+    <span
+      v-if="errorMessage || meta.valid"
+      class="has-error"
+    >
+      {{ meta.valid ? successMessage : errorMessage }}
+    </span>
+    <span
+      class="input-border"
+      :class="{ error: errorMessage }"
+    ></span>
   </div>
 </template>
 <style scoped lang="scss">
   .input-group-wrapper {
     position: relative;
     flex: 1 1 auto;
-    padding: 12px 16px 4px;
-    margin-bottom: 16px;
+    padding: 4px 16px;
+    margin-bottom: 14px;
     font-size: 16px;
     background: color('white');
     border-radius: 8px 8px 0 0;
@@ -53,8 +75,8 @@
 
   .input-base {
     display: block;
-    width: 100%;
-    padding: 12px 0 0;
+    width: 95%;
+    padding: 8px 0 0;
     background: transparent;
     border: 0;
 
@@ -69,7 +91,7 @@
 
   .input-label {
     position: absolute;
-    top: 18px;
+    top: 10px;
     left: 16px;
     width: 80%;
     overflow: hidden;
@@ -84,6 +106,7 @@
 
   .input-group-wrapper:where([disabled='true']) .input-label,
   .input-group-wrapper:where([disabled='']) .input-label {
+    top: 8px;
     color: color(gray-2);
   }
 
@@ -95,6 +118,10 @@
     height: 2px;
     pointer-events: none;
     background: color(border);
+
+    &.error {
+      background: color(error) !important;
+    }
   }
 
   .input-group-wrapper:where([disabled='true']) .input-border,
@@ -102,78 +129,37 @@
     background: color(gray-1);
   }
 
-  .has-error-icon,
-  .has-error {
-    display: none;
-  }
-
-  .input-base:where([required]):where([data-content-valid='invalid']) ~ .input-label {
-    color: color(error);
-  }
-
   .input-base:focus ~ .input-label,
   .input-base:not(:placeholder-shown) ~ .input-label {
-    top: 6px;
-    left: 15px;
+    top: -4px;
+    left: 14px;
     font-size: 12px;
     color: color(primary);
   }
 
-  .input-base:focus ~ .has-error,
-  .input-base:not(:placeholder-shown) ~ .has-error {
-    display: none;
-  }
-
-  .input-base:focus ~ .has-error-icon,
-  .input-base:not(:placeholder-shown) ~ .has-error-icon {
-    display: none;
-  }
-
-  .input-group-wrapper .input-base:where([required]):where([data-content-valid='invalid']) ~ .has-error,
-  .input-group-wrapper .input-base:where([required]):where([data-content-valid='invalid']) ~ .has-error-icon {
+  .input-group-wrapper .input-base ~ .has-error,
+  .input-group-wrapper .input-base ~ .has-error-icon {
     position: absolute;
     display: block;
+    height: 100%;
     color: color(error);
+    word-wrap: break-word;
   }
 
-  .input-group-wrapper .input-base:where([required]):where([data-content-valid='invalid']) ~ .has-error {
-    top: 48px;
+  .input-group-wrapper .input-base ~ .has-error {
+    top: 36px;
     left: 16px;
     font-size: 12px;
   }
 
-  .input-group-wrapper .input-base:where([required]):where([data-content-valid='invalid']) ~ .has-error-icon {
-    top: 20px;
-    right: 4px;
+  .input-group-wrapper .input-base ~ .has-error-icon {
+    top: 12px;
+    right: 2px;
     font-size: 14px;
-  }
-
-  .input-group-wrapper .input-base:not(:placeholder-shown) ~ .has-error,
-  .input-group-wrapper .input-base:not(:placeholder-shown) ~ .has-error-icon {
-    display: none;
-  }
-
-  .input-base:where([required]):where([data-content-valid='invalid']) ~ .input-border {
-    background: color(error);
   }
 
   .input-base:focus ~ .input-border,
   .input-base:not(:placeholder-shown) ~ .input-border {
     background: color(primary);
-  }
-
-  .input-base[type='email']:invalid:where([required]):where([data-content-valid='invalid']) {
-    ~ .input-border {
-      background: color(error);
-    }
-
-    ~ .input-label {
-      color: color(error);
-    }
-
-    ~ .has-error,
-    ~ .has-error-icon {
-      display: block;
-    }
   }
 </style>

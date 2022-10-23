@@ -1,11 +1,16 @@
 <script lang="ts" setup>
   import { reactive } from 'vue';
+  import { Form } from 'vee-validate';
+  import * as Yup from 'yup';
+
+  import { validateFullName, validateEmail } from '@/composables/validator';
+
   import CButton from '@/components/CButton.vue';
   import CInput from '@/components/CInput.vue';
   import CAutocomplete from '@/components/CAutocomplete.vue';
 
   import { COUNTRY_LIST } from '@fake-data/CountriesList';
-  import CCheckbox from '../components/CCheckbox.vue';
+  import CCheckbox from '@/components/CCheckbox.vue';
 
   interface IFormData {
     name?: string;
@@ -18,6 +23,37 @@
 
   const formData: IFormData = reactive({
     somethingHobbies: [],
+  });
+
+  const schema = Yup.object().shape({
+    name: Yup.string()
+      .test('validade-full-name', function (value) {
+        const validation = validateFullName(value || '');
+        if (!validation.isValid) {
+          return this.createError({
+            path: this.path,
+            message: validation.errorMessage,
+          });
+        } else {
+          return true;
+        }
+      })
+      .required('O nome é obrigatório'),
+    age: Yup.number().typeError('Deve ser um numero').required('A idade é obrigatória'),
+    email: Yup.string()
+      .email()
+      .test('validade-email', function (value) {
+        const validation = validateEmail(value || '');
+        if (!validation.isValid) {
+          return this.createError({
+            path: this.path,
+            message: validation.errorMessage,
+          });
+        } else {
+          return true;
+        }
+      })
+      .required('Email é obrigatório'),
   });
 </script>
 
@@ -34,28 +70,36 @@
     <div class="wrapper-div">
       <h2>Inputs</h2>
       <div class="button-group">
-        <CInput
-          v-model="formData.name"
-          :value="formData.name"
-          required
-          label="Nome *"
-          class="teste"
-        />
-        <CInput
-          v-model="formData.age"
-          label="Idade"
-          type="number"
-        />
-        <CInput
-          v-model="formData.email"
-          required
-          label="Email*"
-          type="email"
-        />
-        <CInput
-          disabled
-          label="Input disabled"
-        />
+        <Form
+          :validation-schema="schema"
+          class="form"
+        >
+          <CInput
+            v-model="formData.name"
+            label="Nome"
+            name="name"
+            type="text"
+          />
+
+          <CInput
+            v-model="formData.age"
+            label="Idade"
+            type="number"
+            name="age"
+          />
+          <CInput
+            v-model="formData.email"
+            label="Email"
+            name="email"
+            type="email"
+          />
+          <CInput
+            disabled
+            label="Input disabled"
+            name="input"
+          />
+          <CButton type="submit">Enviar</CButton>
+        </Form>
       </div>
     </div>
     <div>
@@ -107,5 +151,11 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 8px 16px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 </style>
