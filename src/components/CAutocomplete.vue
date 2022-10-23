@@ -138,7 +138,7 @@
 
   .dropdown {
     position: absolute;
-    top: 45px;
+    top: 36px;
     left: 0;
     z-index: 50;
     width: 100%;
@@ -180,11 +180,11 @@
 
   .icon-chevron {
     position: absolute;
-    top: 15px;
+    top: 10px;
     right: 15px;
 
     &.active {
-      top: 10px;
+      top: 5px;
       transform: rotate(-180deg);
     }
   }

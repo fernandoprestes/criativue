@@ -22,6 +22,7 @@
   <div class="checkbox-control">
     <input
       v-bind="$attrs"
+      :id="label"
       v-model="model"
       :value="value"
       name="checkbox"
@@ -30,7 +31,7 @@
     />
     <label
       class="checkbox-label"
-      for="checkbox"
+      :for="label"
     >
       {{ label }}
     </label>

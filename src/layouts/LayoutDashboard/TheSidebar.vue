@@ -6,12 +6,19 @@
     >
       <span>Home</span>
     </router-link>
+    <router-link
+      to="/form"
+      class="sidebar-item"
+    >
+      <span>Formulario</span>
+    </router-link>
   </div>
 </template>
 <style lang="scss" scoped>
   .sidebar {
     display: flex;
     flex-direction: column;
+    gap: 2px;
     align-items: center;
     width: 100%;
     max-width: 268px;
@@ -37,6 +44,7 @@
     }
 
     &:hover {
+      color: color(accent);
       background: color(secondary);
     }
   }
