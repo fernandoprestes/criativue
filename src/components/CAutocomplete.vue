@@ -87,6 +87,7 @@
     <CInput
       v-bind="$attrs"
       v-model="showResultInput"
+      name="autocomplete"
       type="text"
       :label="label"
       @click="onClickOpenDropdown"

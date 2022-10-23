@@ -27,14 +27,14 @@
   });
 </script>
 <template>
-  <div class="input-group-wrapper">
+  <div class="input-group">
     <input
       :id="name"
       :name="name"
       :value="inputValue"
       :placeholder="label"
       v-bind="$attrs"
-      class="input-base"
+      class="input-field"
       @input="handleChange"
       @blur="handleBlur"
     />
@@ -47,7 +47,7 @@
     </span>
     <span
       v-if="errorMessage || meta.valid"
-      class="has-error"
+      class="has-error-label"
     >
       {{ meta.valid ? successMessage : errorMessage }}
     </span>
@@ -58,7 +58,7 @@
   </div>
 </template>
 <style scoped lang="scss">
-  .input-group-wrapper {
+  .input-group {
     position: relative;
     flex: 1 1 auto;
     padding: 4px 16px;
@@ -68,12 +68,12 @@
     border-radius: 8px 8px 0 0;
   }
 
-  .input-group-wrapper:where([disabled='true']),
-  .input-group-wrapper:where([disabled='']) {
+  .input-group:where([disabled='true']),
+  .input-group:where([disabled='']) {
     background: color(gray-1);
   }
 
-  .input-base {
+  .input-field {
     display: block;
     width: 95%;
     padding: 8px 0 0;
@@ -104,8 +104,8 @@
     transition: 0.2s ease all;
   }
 
-  .input-group-wrapper:where([disabled='true']) .input-label,
-  .input-group-wrapper:where([disabled='']) .input-label {
+  .input-group:where([disabled='true']) .input-label,
+  .input-group:where([disabled='']) .input-label {
     top: 8px;
     color: color(gray-2);
   }
@@ -124,21 +124,21 @@
     }
   }
 
-  .input-group-wrapper:where([disabled='true']) .input-border,
-  .input-group-wrapper:where([disabled='']) .input-border {
+  .input-group:where([disabled='true']) .input-border,
+  .input-group:where([disabled='']) .input-border {
     background: color(gray-1);
   }
 
-  .input-base:focus ~ .input-label,
-  .input-base:not(:placeholder-shown) ~ .input-label {
+  .input-field:focus ~ .input-label,
+  .input-field:not(:placeholder-shown) ~ .input-label {
     top: -4px;
     left: 14px;
     font-size: 12px;
     color: color(primary);
   }
 
-  .input-group-wrapper .input-base ~ .has-error,
-  .input-group-wrapper .input-base ~ .has-error-icon {
+  .input-group .input-field ~ .has-error-label,
+  .input-group .input-field ~ .has-error-icon {
     position: absolute;
     display: block;
     height: 100%;
@@ -146,20 +146,20 @@
     word-wrap: break-word;
   }
 
-  .input-group-wrapper .input-base ~ .has-error {
+  .input-group .input-field ~ .has-error-label {
     top: 36px;
     left: 16px;
     font-size: 12px;
   }
 
-  .input-group-wrapper .input-base ~ .has-error-icon {
+  .input-group .input-field ~ .has-error-icon {
     top: 12px;
     right: 2px;
     font-size: 14px;
   }
 
-  .input-base:focus ~ .input-border,
-  .input-base:not(:placeholder-shown) ~ .input-border {
+  .input-field:focus ~ .input-border,
+  .input-field:not(:placeholder-shown) ~ .input-border {
     background: color(primary);
   }
 </style>
