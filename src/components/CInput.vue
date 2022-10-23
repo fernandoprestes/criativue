@@ -2,6 +2,7 @@
   import { toRef } from 'vue';
   import { useField } from 'vee-validate';
   import { IconInfoCircleOutline } from '@iconify-prerendered/vue-mdi';
+  import CTooltip from './CTooltip.vue';
 
   interface InputProps {
     name: string;
@@ -40,10 +41,12 @@
     />
     <label class="input-label">{{ label }}</label>
     <span
-      v-if="errorMessage && !meta.valid"
+      v-if="errorMessage && !meta.valid && props.tooltipMessage"
       class="has-error-icon"
     >
-      <IconInfoCircleOutline />
+      <CTooltip :text="props.tooltipMessage">
+        <IconInfoCircleOutline />
+      </CTooltip>
     </span>
     <span
       v-if="errorMessage || meta.valid"
@@ -62,7 +65,7 @@
     position: relative;
     flex: 1 1 auto;
     padding: 4px 16px;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     font-size: 16px;
     background: color('white');
     border-radius: 8px 8px 0 0;
@@ -91,7 +94,7 @@
 
   .input-label {
     position: absolute;
-    top: 10px;
+    top: 8px;
     left: 16px;
     width: 80%;
     overflow: hidden;
@@ -141,20 +144,19 @@
   .input-group .input-field ~ .has-error-icon {
     position: absolute;
     display: block;
-    height: 100%;
     color: color(error);
     word-wrap: break-word;
   }
 
   .input-group .input-field ~ .has-error-label {
-    top: 36px;
+    top: 34px;
     left: 16px;
     font-size: 12px;
   }
 
   .input-group .input-field ~ .has-error-icon {
     top: 12px;
-    right: 2px;
+    right: 4px;
     font-size: 14px;
   }
 
