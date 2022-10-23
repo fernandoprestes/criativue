@@ -15,7 +15,7 @@ Este repositório é um laboratorio de estudos e testes com o framework Vue e se
 - [ ] Notification
 - [ ] Pagination
 - [ ] Table
-- [ ] Tooltip
+- [x] Tooltip
 - Forms
   - [x] Autocomplete
   - [x] Checkbox
@@ -31,6 +31,8 @@ Este repositório é um laboratorio de estudos e testes com o framework Vue e se
 - [Vue3](https://vuejs.org/)
 - [Vue-Router](https://router.vuejs.org/)
 - [VueUse](https://vueuse.org/)
+- [VeeValidate](https://vee-validate.logaretm.com/v4/)
+- [vitest](https://vitest.dev/)
 - [Typescript](https://www.typescriptlang.org/)
 - [SASS](https://sass-lang.com/)
 - [Eslint](https://eslint.org/)
@@ -43,7 +45,7 @@ Este repositório é um laboratorio de estudos e testes com o framework Vue e se
 ### Ferramentas recomendadas
 
 - [VSCode](https://code.visualstudio.com/)
-- [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
