@@ -33,6 +33,6 @@ export const schema = Yup.object().shape({
         return true;
       })
       .required('Email é obrigatório'),
+    otherwise: Yup.string().notRequired(),
   }),
-  otherwise: Yup.string().notRequired(),
 });
