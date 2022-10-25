@@ -28,9 +28,12 @@
 </template>
 <style lang="scss" scoped>
   .tooltip-group {
-    position: absolute;
+    position: relative;
     z-index: 9999;
-    width: clamp(246px, 0%, 0px);
+    display: flex;
+    justify-content: center;
+    width: clamp(256px, 0%, 0px);
+    transform: translateX(-40%);
   }
 
   .tooltip-item {

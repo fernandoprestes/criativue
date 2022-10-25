@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { toRef } from 'vue';
+  import { computed, toRef } from 'vue';
   import { useField } from 'vee-validate';
   import { IconInfoCircleOutline } from '@iconify-prerendered/vue-mdi';
   import CTooltip from './CTooltip.vue';
@@ -26,6 +26,10 @@
   } = useField(inputNameRef, undefined, {
     initialValue: inputValueRef,
   });
+
+  const validStyleErrorColor = computed(() => {
+    return !errorMessage.value || (meta.valid && inputValue?.toString().length > 0);
+  });
 </script>
 <template>
   <div>
@@ -40,7 +44,11 @@
         @input="handleChange"
         @blur="handleBlur"
       />
-      <label class="input-label">{{ label }}</label>
+      <label
+        class="input-label"
+        :class="[!validStyleErrorColor ? 'error' : '']"
+        >{{ label }}</label
+      >
       <span
         v-if="errorMessage && !meta.valid && props.tooltipMessage"
         class="has-error-icon"
@@ -79,7 +87,7 @@
 
   .input-field {
     display: block;
-    width: 95%;
+    width: 100%;
     padding: 8px 0 0;
     background: transparent;
     border: 0;
@@ -139,6 +147,11 @@
     left: 14px;
     font-size: 12px;
     color: color(primary);
+  }
+
+  .input-field:focus ~ .input-label.error,
+  .input-field:not(:placeholder-shown) ~ .input-label.error {
+    color: color(error);
   }
 
   .input-group .input-field ~ .has-error-icon {

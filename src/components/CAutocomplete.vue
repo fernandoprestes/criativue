@@ -6,9 +6,10 @@
   import CInput from './CInput.vue';
 
   const props = defineProps<{
-    modelValue?: number | null;
     label: string;
+    name: string;
     optionsList: IOptionsListSelect[];
+    modelValue?: number | null;
   }>();
 
   const emit = defineEmits(['update:modelValue']);
@@ -87,12 +88,12 @@
     <CInput
       v-bind="$attrs"
       v-model="showResultInput"
-      name="autocomplete"
       type="text"
+      :name="name"
       :label="label"
+      @blur="onChangeBlur"
       @click="onClickOpenDropdown"
       @focus="onClickOpenDropdown"
-      @blur="onChangeBlur"
       @keyup="onChangeInput"
     />
     <div
