@@ -1,16 +1,16 @@
 <script lang="ts" setup>
   import { reactive } from 'vue';
   import { Form } from 'vee-validate';
-  import * as Yup from 'yup';
 
   import CButton from '@/components/CButton.vue';
   import CInput from '@/components/CInput.vue';
   import CAutocomplete from '@/components/CAutocomplete.vue';
   import CCheckbox from '@/components/CCheckbox.vue';
-  import { validateFullName, validateEmail } from '@/composables/validator';
 
   import { COUNTRY_LIST } from '@fake-data/CountriesList';
   import { HOBBIES_LIST } from '@fake-data/HobbiesList';
+
+  import { schema, isEmailFiledDisabled } from './FormSchema';
 
   interface IFormData {
     name: string;
@@ -26,37 +26,6 @@
     formData: {
       hobbies: [],
     } as IFormData,
-  });
-
-  const schema = Yup.object().shape({
-    name: Yup.string()
-      .test('validade-full-name', function (value) {
-        const validation = validateFullName(value || '');
-        if (!validation.isValid) {
-          return this.createError({
-            path: this.path,
-            message: validation.errorMessage,
-          });
-        } else {
-          return true;
-        }
-      })
-      .required('O nome é obrigatório'),
-    age: Yup.number().typeError('Deve ser um numero').required('A idade é obrigatória'),
-    email: Yup.string()
-      .email()
-      .test('validade-email', function (value) {
-        const validation = validateEmail(value || '');
-        if (!validation.isValid) {
-          return this.createError({
-            path: this.path,
-            message: validation.errorMessage,
-          });
-        } else {
-          return true;
-        }
-      })
-      .required('Email é obrigatório'),
   });
 
   function onSubmit() {
@@ -90,10 +59,12 @@
         label="Email"
         name="email"
         type="email"
+        :disabled="isEmailFiledDisabled"
       />
       <CAutocomplete
         v-model="state.formData.country"
         label="Países"
+        name="country"
         :options-list="COUNTRY_LIST"
       />
       <CCheckbox
