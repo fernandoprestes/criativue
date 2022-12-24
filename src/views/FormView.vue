@@ -12,6 +12,8 @@
 
   import { schema, isEmailFiledDisabled } from './FormSchema';
 
+  import { useFocusScrollInput } from '@/composables/useFocusScrollInput';
+
   interface IFormData {
     name: string;
     age: number | null;
@@ -28,6 +30,9 @@
     } as IFormData,
   });
 
+  function onInvalidSubmit({ errors }) {
+    useFocusScrollInput(errors);
+  }
   function onSubmit() {
     alert(JSON.stringify(state.formData, null, 2));
   }
@@ -39,6 +44,7 @@
       :validation-schema="schema"
       class="form-group"
       @submit="onSubmit"
+      @invalid-submit="onInvalidSubmit"
     >
       <CInput
         v-model="state.formData.name"

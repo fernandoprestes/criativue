@@ -17,7 +17,7 @@ export const schema = Yup.object().shape({
     })
     .required('O nome é obrigatório'),
   age: Yup.number().typeError('Deve ser um numero').required('A idade é obrigatória'),
-  country: Yup.string().required('A idade é obrigatória'),
+  country: Yup.string().required('O país é obrigatório'),
   email: Yup.string().when([], {
     is: () => !isEmailFiledDisabled.value,
     then: Yup.string()
