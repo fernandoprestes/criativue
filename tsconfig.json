@@ -19,6 +19,7 @@
     "sourceMap": true,
     "noImplicitThis": true,
     "preserveValueImports": true,
+    "noImplicitAny": false,
     "importsNotUsedAsValues": "error",
     "paths": {
       "@/*": ["./src/*", "./dist/*"],
