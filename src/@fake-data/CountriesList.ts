@@ -1,6 +1,6 @@
-import type { IOptionsListSelect } from '@interfaces/IOptionsListSelect';
+import type { OptionsListSelect } from '@/@interfaces/OptionsListSelect';
 
-export const COUNTRY_LIST: IOptionsListSelect[] = [
+export const COUNTRY_LIST: OptionsListSelect[] = [
   {
     id: 1,
     name: 'Afeganistão',

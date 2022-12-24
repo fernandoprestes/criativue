@@ -2,13 +2,13 @@
   import { ref } from 'vue';
   import { onClickOutside, useVirtualList } from '@vueuse/core';
   import { IconKeyboardArrowDown } from '@iconify-prerendered/vue-mdi';
-  import type { IOptionsListSelect } from '@interfaces/IOptionsListSelect';
+  import type { OptionsListSelect } from '@/@interfaces/OptionsListSelect';
   import CInput from './CInput.vue';
 
   const props = defineProps<{
     label: string;
     name: string;
-    optionsList: IOptionsListSelect[];
+    optionsList: OptionsListSelect[];
     modelValue?: number | null;
   }>();
 
@@ -24,7 +24,7 @@
     dropdown.value = false;
   });
 
-  const selectedItem = (data: IOptionsListSelect) => {
+  const selectedItem = (data: OptionsListSelect) => {
     showResultInput.value = data.name;
     dropdown.value = false;
     emit('update:modelValue', data.id);
@@ -53,7 +53,7 @@
     emit('update:modelValue', 0);
   };
 
-  const autocompleteMatch = (textSearch: string): IOptionsListSelect[] => {
+  const autocompleteMatch = (textSearch: string): OptionsListSelect[] => {
     if (textSearch === '') {
       emit('update:modelValue', 0);
       return props.optionsList;
